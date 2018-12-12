@@ -6,7 +6,8 @@ import javax.swing.*;
 public class Willkommen extends JFrame implements ActionListener
 {
 	JRadioButton[] schwierigkeit = new JRadioButton[3];
-	JLabel schwierigLabel, bildLabel, willkommen;
+	JRadioButton[] quartett = new JRadioButton[3];
+	JLabel schwierigLabel,varianteLabel, bildLabel, willkommen;
 	JButton startButton, infoButton;
 	ImageIcon zugBild, willkommenBild;
 	JTextField namensEingabe;
@@ -36,6 +37,26 @@ public class Willkommen extends JFrame implements ActionListener
 			group.add(schwierigkeit[i]);
 		}
 
+		quartett[0] = new JRadioButton("Züge", true);
+		quartett[0].setBounds(180, 400, 100, 20);
+		quartett[0].setBackground(Color.white);
+		this.getContentPane().add(quartett[0]);
+		quartett[1] = new JRadioButton("Traktoren");
+		quartett[1].setBounds(180, 420, 100, 20);
+		quartett[1].setBackground(Color.white);
+		this.getContentPane().add(quartett[1]);
+		quartett[2] = new JRadioButton("Panzer");
+		quartett[2].setBounds(180, 440, 100, 20);
+		quartett[2].setBackground(Color.white);
+		this.getContentPane().add(quartett[2]);
+		ButtonGroup group1 = new ButtonGroup();
+		group1.add(quartett[0]);
+		group1.add(quartett[1]);
+		group1.add(quartett[2]);
+
+		varianteLabel = new JLabel ("Variante:");
+		varianteLabel.setBounds(180, 380, 150, 20);
+		this.getContentPane().add(varianteLabel);
 		schwierigLabel = new JLabel ("Schwierigkeitsgrad:");
 		schwierigLabel.setBounds(10, 380, 150, 20);
 		this.getContentPane().add(schwierigLabel);
@@ -58,10 +79,10 @@ public class Willkommen extends JFrame implements ActionListener
 		this.getContentPane().add(infoButton);
 
 		namensLabel = new JLabel ("Ihr Name:");
-		namensLabel.setBounds(200, 380, 100, 20);
+		namensLabel.setBounds(300, 380, 100, 20);
 		this.getContentPane().add(namensLabel);
 		namensEingabe = new JTextField();
-		namensEingabe.setBounds(270, 380, 100, 20);
+		namensEingabe.setBounds(370, 380, 100, 20);
 		this.getContentPane().add(namensEingabe);
 
 
@@ -74,7 +95,7 @@ public class Willkommen extends JFrame implements ActionListener
 
 		if(cmd.equals("Start"))
 		{
-			int pSchwierig = 0;
+			int pSchwierig = -1;
 			if (schwierigkeit[0].isSelected())
 			{
 				pSchwierig = 0;
@@ -87,8 +108,23 @@ public class Willkommen extends JFrame implements ActionListener
 			{
 				pSchwierig = 2;
 			}
+
+			int pVariante = -1;
+			if (quartett[0].isSelected())
+			{
+				pVariante = 0;
+			}
+			else if(quartett[1].isSelected())
+			{
+				pVariante = 1;
+			}
+			else if(quartett[2].isSelected())
+			{
+				pVariante = 2;
+			}
+
 			String spName = namensEingabe.getText();
-			EinAus wnd = new EinAus(pSchwierig, spName);
+			EinAus wnd = new EinAus(pSchwierig, pVariante, spName);
 			wnd.setSize(900,550);
       		wnd.setVisible(true);
 
@@ -98,7 +134,7 @@ public class Willkommen extends JFrame implements ActionListener
 		else if(cmd.equals("Info"))
 		{
 			InfoMaske myInfomaske = new InfoMaske();
-			myInfomaske.setSize(300, 250);
+			myInfomaske.setSize(300, 350);
 			myInfomaske.setVisible(true);
 		}
 	}

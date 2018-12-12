@@ -5,7 +5,12 @@ class Spiel
 	Vector blattSp1 = new Vector(0,1);
 	Vector blattSp2 = new Vector(0,1);
 	Vector unentschieden = new Vector();
-	Kartenspiel meinKSpiel= new Kartenspiel();
+	Kartenspiel meinKSpiel;
+
+	Spiel (int pVariante)
+	{
+		meinKSpiel = new Kartenspiel(pVariante);
+	}
 
 	void verteilen()
 	{

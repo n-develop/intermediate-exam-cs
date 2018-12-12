@@ -9,7 +9,7 @@ class Vergleich
 	{
  		int retValue = -1;
 
- 		if(wertIndex >= 3 && wertIndex <= 4)
+ 		if(wertIndex == 3)
 		{
 			double iTmp = sp1Wert;
  			sp1Wert = sp2Wert;

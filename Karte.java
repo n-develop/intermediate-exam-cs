@@ -5,62 +5,53 @@ import javax.swing.*;
 
 
 class Karte
+
 {
 
-	private double vmax = 0;
-
-	private double leistung = 0;
-	private double gewicht = 0;
-	private double laenge = 0;
-	private double baujahr = 0;
+	private double wert1 = 0;
+	private double wert2 = 0;
+	private double wert3 = 0;
+	private double wert4 = 0;
+	private double wert5 = 0;
 	private int  besonderheit = 0;
 
 	private ImageIcon bild;
 
 
 
-	Karte(String pName, double pVmax, double pLeistung, double pGewicht, double pLaenge, double pBaujahr, ImageIcon pBild, int  pBesonderheit)
+	Karte(String pName, double pWert1, double pWert2, double pWert3, double pWert4, double pWert5, ImageIcon pBild, int  pBesonderheit)
 
 	{
 
-		vmax = pVmax;
-		leistung = pLeistung;
-		gewicht = pGewicht;
-		laenge = pLaenge;
-		baujahr = pBaujahr;
+		wert1 = pWert1;
+		wert2 = pWert2;
+		wert3 = pWert3;
+		wert4 = pWert4;
+		wert5 = pWert5;
 		bild = pBild;
 		besonderheit = pBesonderheit;
 	}
 
 
-	public double getVmax()
-
+	public double getWert1()
 	{
-
-		return vmax;
-
+		return wert1;
 	}
-
-
-
-	public double getLeistung()
-
+	public double getWert2()
 	{
-
-		return leistung;
-
+		return wert2;
 	}
-	public double getGewicht()
+	public double getWert3()
 	{
-		return gewicht;
+		return wert3;
 	}
-	public double getLaenge()
+	public double getWert4()
 	{
-		return laenge;
+		return wert4;
 	}
-	public double getBaujahr()
+	public double getWert5()
 	{
-		return baujahr;
+		return wert5;
 	}
 	public int getBesonderheit()
 	{

@@ -8,12 +8,13 @@ class Gegner
 	private int ergebnis = 0;
 	private Random	myRandom;
 	Main myMain;
-	Kartenspiel kSpiel = new Kartenspiel();
+	Kartenspiel kSpiel;
 
 	public Gegner (long start, Main pMain)
 	{
 		myRandom = new Random(start);
 		myMain = pMain;
+		kSpiel = new Kartenspiel(myMain.getVariante());
 	}
 
 	//Diese Methode führt nach Abfrage des Schwierigkeitsgrades
@@ -73,21 +74,21 @@ class Gegner
 		else
 		{
 
-			int vmaxWert = getMittelVmax();
-			int leistungWert = getMittelLeistung();
-			int laengeWert = getMittelLaenge();
-			int gewichtWert = getMittelGewicht();
-			int baujahrWert = getMittelBaujahr();
+			int wert1Wert = getMittelWert1();
+			int wert2Wert = getMittelWert2();
+			int wert4Wert = getMittelWert4();
+			int wert3Wert = getMittelWert3();
+			int wert5Wert = getMittelWert5();
 
-			if(karte.getVmax() > vmaxWert)
+			if(karte.getWert1() > wert1Wert)
 				retValue = 0;
-			else if(karte.getLeistung() > leistungWert)
+			else if(karte.getWert2() > wert2Wert)
 				retValue = 1;
-			else if(karte.getLaenge() > laengeWert)
+			else if(karte.getWert4() > wert4Wert)
 				retValue = 2;
-			else if(karte.getGewicht() < gewichtWert)
+			else if(karte.getWert3() < wert3Wert)
 				retValue = 3;
-			else if(karte.getBaujahr() < baujahrWert)
+			else if(karte.getWert5() < wert5Wert)
 				retValue = 4;
 			else
 			{
@@ -132,39 +133,39 @@ class Gegner
 		}
 		else
 		{
-			int vmax75 = pro75Vmax();
-			int leistung75 = pro75Leistung();
-			int laenge75 = pro75Laenge();
-			int gewicht75 = pro75Gewicht();
-			int baujahr75 = pro75Baujahr();
+			int wert175 = pro75Wert1();
+			int wert275 = pro75Wert2();
+			int wert475 = pro75Wert4();
+			int wert375 = pro75Wert3();
+			int wert575 = pro75Wert5();
 
-			if(karte.getVmax() > vmax75)
+			if(karte.getWert1() > wert175)
 				retValue = 0;
-			else if(karte.getLeistung() > leistung75)
+			else if(karte.getWert2() > wert275)
 				retValue = 1;
-			else if(karte.getLaenge() > laenge75)
+			else if(karte.getWert4() > wert475)
 				retValue = 2;
-			else if(karte.getGewicht() < gewicht75)
+			else if(karte.getWert3() < wert375)
 				retValue = 3;
-			else if(karte.getBaujahr() < baujahr75)
+			else if(karte.getWert5() < wert575)
 				retValue = 4;
 			else
 			{
-				int vmaxWert = getMittelVmax();
-				int leistungWert = getMittelLeistung();
-				int laengeWert = getMittelLaenge();
-				int gewichtWert = getMittelGewicht();
-				int baujahrWert = getMittelBaujahr();
+				int wert1Wert = getMittelWert1();
+				int wert2Wert = getMittelWert2();
+				int wert4Wert = getMittelWert4();
+				int wert3Wert = getMittelWert3();
+				int wert5Wert = getMittelWert5();
 
-				if(karte.getVmax() > vmaxWert)
+				if(karte.getWert1() > wert1Wert)
 					retValue = 0;
-				else if(karte.getLeistung() > leistungWert)
+				else if(karte.getWert2() > wert2Wert)
 					retValue = 1;
-				else if(karte.getLaenge() > laengeWert)
+				else if(karte.getWert4() > wert4Wert)
 					retValue = 2;
-				else if(karte.getGewicht() < gewichtWert)
+				else if(karte.getWert3() < wert3Wert)
 					retValue = 3;
-				else if(karte.getBaujahr() < baujahrWert)
+				else if(karte.getWert5() < wert5Wert)
 					retValue = 4;
 				else
 				{
@@ -181,128 +182,128 @@ class Gegner
 
 	// Methoden zur Ermittlung des Mittelwertes einer bestimmten Eigenschaft
 
-	int getMittelVmax()
+	int getMittelWert1()
 	{
-		int vmaxWert=0;
+		int wert1Wert=0;
 		for (int i=0; i<32; i++)
 		{
-			vmaxWert += kSpiel.stapel[i].getVmax();
+			wert1Wert += kSpiel.stapel[i].getWert1();
 		}
-		vmaxWert /=  32;
-		return vmaxWert;
+		wert1Wert /=  32;
+		return wert1Wert;
 	}
 
-	int getMittelLeistung()
+	int getMittelWert2()
 	{
-		int leistungWert=0;
+		int wert2Wert=0;
 		for (int i=0; i<32; i++)
 		{
-			leistungWert += kSpiel.stapel[i].getLeistung();
+			wert2Wert += kSpiel.stapel[i].getWert2();
 		}
-		leistungWert /= 32;
-		return leistungWert;
+		wert2Wert /= 32;
+		return wert2Wert;
 	}
 
-	int getMittelGewicht()
+	int getMittelWert3()
 	{
-		int gewichtWert=0;
+		int wert3Wert=0;
 		for (int i=0; i<32; i++)
 		{
-			gewichtWert += kSpiel.stapel[i].getGewicht();
+			wert3Wert += kSpiel.stapel[i].getWert3();
 		}
-		gewichtWert /= 32;
-		return gewichtWert;
+		wert3Wert /= 32;
+		return wert3Wert;
 	}
 
-	int getMittelLaenge()
+	int getMittelWert4()
 	{
-		int laengeWert=0;
+		int wert4Wert=0;
 		for (int i=0; i<32; i++)
 		{
-			laengeWert += kSpiel.stapel[i].getLaenge();
+			wert4Wert += kSpiel.stapel[i].getWert4();
 		}
-		laengeWert /= 32;
-		return laengeWert;
+		wert4Wert /= 32;
+		return wert4Wert;
 	}
 
-	int getMittelBaujahr()
+	int getMittelWert5()
 	{
-		int baujahrWert=0;
+		int wert5Wert=0;
 		for (int i=0; i<32; i++)
 		{
-			baujahrWert += kSpiel.stapel[i].getBaujahr();
+			wert5Wert += kSpiel.stapel[i].getWert5();
 		}
-		baujahrWert /= 32;
-		return baujahrWert;
+		wert5Wert /= 32;
+		return wert5Wert;
 	}
 
 	//Methoden zur Ermittlung der 75%-Marke einer Eigentschaft
 
- 	int pro75Vmax()
+ 	int pro75Wert1()
  	{
-		kSpiel.sortVmax();
+		kSpiel.sortWert1();
 		int anzahl = 0;
 		int wert75 = 0;
-		int mittelwert = getMittelVmax();
-		for(int i=31; mittelwert<kSpiel.stapel[i].getVmax(); i--)
+		int mittelwert = getMittelWert1();
+		for(int i=31; mittelwert<kSpiel.stapel[i].getWert1(); i--)
 		{
-			wert75 += kSpiel.stapel[i].getVmax();
+			wert75 += kSpiel.stapel[i].getWert1();
 			anzahl++;
 		}
 		wert75 /= anzahl;
 		return wert75;
 	}
- 	int pro75Leistung()
+ 	int pro75Wert2()
  	{
-		kSpiel.sortLeistung();
+		kSpiel.sortWert2();
 		int anzahl = 0;
 		int wert75 = 0;
-		int mittelwert = getMittelLeistung();
-		for(int i=31; mittelwert<kSpiel.stapel[i].getLeistung(); i--)
+		int mittelwert = getMittelWert2();
+		for(int i=31; mittelwert<kSpiel.stapel[i].getWert2(); i--)
 		{
-			wert75 += kSpiel.stapel[i].getLeistung();
+			wert75 += kSpiel.stapel[i].getWert2();
 			anzahl++;
 		}
 		wert75 /= anzahl;
 		return wert75;
 	}
- 	int pro75Gewicht()
+ 	int pro75Wert3()
  	{
-		kSpiel.sortGewicht();
+		kSpiel.sortWert3();
 		int anzahl = 0;
 		int wert75 = 0;
-		int mittelwert= getMittelGewicht();
-		for(int i=0; mittelwert>kSpiel.stapel[i].getGewicht(); i++)
+		int mittelwert= getMittelWert3();
+		for(int i=0; mittelwert>kSpiel.stapel[i].getWert3(); i++)
 		{
-			wert75 += kSpiel.stapel[i].getGewicht();
+			wert75 += kSpiel.stapel[i].getWert3();
 			anzahl++;
 		}
 		wert75 /= anzahl;
 		return wert75;
 	}
- 	int pro75Laenge()
+ 	int pro75Wert4()
  	{
-		kSpiel.sortLaenge();
+		kSpiel.sortWert4();
 		int anzahl = 0;
 		int wert75 = 0;
-		int mittelwert = getMittelLaenge();
-		for(int i=31; mittelwert<kSpiel.stapel[i].getLaenge(); i--)
+		int mittelwert = getMittelWert4();
+		for(int i=31; mittelwert<kSpiel.stapel[i].getWert4(); i--)
 		{
-			wert75 += kSpiel.stapel[i].getLaenge();
+			wert75 += kSpiel.stapel[i].getWert4();
 			anzahl++;
 		}
 		wert75 /= anzahl;
 		return wert75;
 	}
- 	int pro75Baujahr()
+ 	int pro75Wert5()
  	{
-		kSpiel.sortBaujahr();
+		kSpiel.sortWert5();
 		int anzahl = 0;
 		int wert75 = 0;
-		int mittelwert= getMittelBaujahr();
-		for(int i=0; mittelwert>kSpiel.stapel[i].getBaujahr(); i++)
+		int mittelwert= getMittelWert5();
+		for(int i=0; mittelwert>kSpiel.stapel[i].getWert5(); i++)
 		{
-			wert75 += kSpiel.stapel[i].getBaujahr();
+			wert75 += kSpiel.stapel[i].getWert5();
 			anzahl++;
 		}
 		wert75 /= anzahl;

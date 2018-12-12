@@ -11,12 +11,12 @@ import javax.swing.*;
 
 
 public class EinAus extends JFrame implements ActionListener
-{
-	Main myMain = new Main(this);
 
+{
+	Main myMain;
 	ImageIcon rueckseite = new ImageIcon("Images\\rückseite.gif");
 	JButton gebenButton, endeButton, weiterButton;
-	JButton vmaxButton, leistungButton, gewichtButton, laengeButton, baujahrButton;
+	JButton wert1Button, wert2Button, wert3Button, wert4Button, wert5Button;
 	JTextField wertSpieler, wertComputer, kartenAnzahl, unentschAnzeige;
 	JTextField ihreWahlAusgabe;
 	JTextField kartenSpieler, kartenPc;
@@ -25,10 +25,12 @@ public class EinAus extends JFrame implements ActionListener
 	JLabel amZugLabelPC, amZugLabelSp;
 	JLabel spieler1Stapel, spieler2Stapel;
 	int schwierig;
+	int variante; //0 = Züge, 1 = Traktoren, 2 = Panzer
 	String name;
+	String buttonName1, buttonName2, buttonName3, buttonName4, buttonName5;
 
 
-   	public EinAus(int pSchwierig, String pName)
+   	public EinAus(int pSchwierig, int pVariante, String pName)
 
 	{
 
@@ -38,6 +40,34 @@ public class EinAus extends JFrame implements ActionListener
 
 		schwierig = pSchwierig;
 		name = pName;
+		variante = pVariante;
+		myMain = new Main(this, variante);
+
+		if (variante == 0)
+		{
+			buttonName1 = "Geschwindigkeit";
+			buttonName2 = "Leistung";
+			buttonName3 = "Gewicht";
+			buttonName4 = "Länge";
+			buttonName5 = "Baujahr";
+		}
+		if (variante == 1)
+		{
+			buttonName1 = "Hubraum";
+			buttonName2 = "Leistung";
+			buttonName3 = "Drehzahl";
+			buttonName4 = "Länge";
+			buttonName5 = "Gewicht";
+		}
+		if (variante == 2)
+		{
+			buttonName1 = "Leistung";
+			buttonName2 = "Geschwindigkeit";
+			buttonName3 = "Reichweite";
+			buttonName4 = "Gewicht";
+			buttonName5 = "Länge";
+		}
+
 
 		//Geben-Button
 	  	gebenButton = new JButton("Geben");
@@ -56,30 +86,30 @@ public class EinAus extends JFrame implements ActionListener
 	  	endeButton.addActionListener(this);
 	  	this.getContentPane().add(endeButton);
 		//Auswahlbutton
-		vmaxButton = new JButton("Vmax");
-	  	vmaxButton.setBounds (20, 220, 150, 30);
-	  	vmaxButton.addActionListener(this);
-	  	this.getContentPane().add(vmaxButton);
+		wert1Button = new JButton(buttonName1);
+	  	wert1Button.setBounds (20, 220, 150, 30);
+	  	wert1Button.addActionListener(this);
+	  	this.getContentPane().add(wert1Button);
 
-		gewichtButton = new JButton("Gewicht");
-	  	gewichtButton.setBounds (20, 300, 150, 30);
-	  	gewichtButton.addActionListener(this);
-	  	this.getContentPane().add(gewichtButton);
+		wert3Button = new JButton(buttonName3);
+	  	wert3Button.setBounds (20, 300, 150, 30);
+	  	wert3Button.addActionListener(this);
+	  	this.getContentPane().add(wert3Button);
 
-		leistungButton = new JButton("Leistung");
-	  	leistungButton.setBounds (20, 260, 150, 30);
-	  	leistungButton.addActionListener(this);
-	  	this.getContentPane().add(leistungButton);
+		wert2Button = new JButton(buttonName2);
+	  	wert2Button.setBounds (20, 260, 150, 30);
+	  	wert2Button.addActionListener(this);
+	  	this.getContentPane().add(wert2Button);
 
-		laengeButton = new JButton("L�nge");
-	  	laengeButton.setBounds (20, 340, 150, 30);
-	  	laengeButton.addActionListener(this);
-	  	this.getContentPane().add(laengeButton);
+		wert4Button = new JButton(buttonName4);
+	  	wert4Button.setBounds (20, 340, 150, 30);
+	  	wert4Button.addActionListener(this);
+	  	this.getContentPane().add(wert4Button);
 
-		baujahrButton = new JButton("Baujahr");
-	  	baujahrButton.setBounds (20, 380, 150, 30);
-	  	baujahrButton.addActionListener(this);
-	  	this.getContentPane().add(baujahrButton);
+		wert5Button = new JButton(buttonName5);
+	  	wert5Button.setBounds (20, 380, 150, 30);
+	  	wert5Button.addActionListener(this);
+	  	this.getContentPane().add(wert5Button);
 
 
 		//Labels für die Karten
@@ -108,7 +138,7 @@ public class EinAus extends JFrame implements ActionListener
 		wertComputer.setBounds(800, 80, 60, 20);
 		this.getContentPane().add(wertComputer);
 		ihreWahlAusgabe = new JTextField();
-		ihreWahlAusgabe.setBounds(800, 20, 60, 20);
+		ihreWahlAusgabe.setBounds(800, 20, 70, 20);
 		this.getContentPane().add(ihreWahlAusgabe);
 
 		//Textfelder und Labels zur Anzeige der Anzahl der Karten im Blatt
