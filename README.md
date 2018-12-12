@@ -26,3 +26,7 @@ It's really funny to see, how I coded around a couple of "challenges" back then.
 
 So feel free to look at the code. Laugh at the code. Laugh at (the younger) me. That's all fine. That's what this repository is made for.
 But please don't contact me to tell me that the code is crap. I already know. ;-)
+
+## Version 2
+
+After I finished the game, I extended it to support three different quartet games. You can find this version (I call it "version 2") in the "version-2" branch of this repository.
